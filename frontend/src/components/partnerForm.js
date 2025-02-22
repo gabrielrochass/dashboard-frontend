@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Button, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import { createPartner, deletePartner, getPartner, updatePartner } from "../services/api";
+import EditPartnerModal from "./editPartnerModal.js";
 
 const PartnerForm = () => {
-    const [partner, setPartner] = useState({
-        firstName: "",
-        lastName: "",
-        participation: "",
-        company: ""
-    });
-
+    const [partner, setPartner] = useState({ firstName: "", lastName: "", participation: "", company: "" });
     const [partners, setPartners] = useState([]);
-    const [isEditModalOpen, setEditModalOpen] = useState(false); // Estado do modal
-    const [partnerToEdit, setPartnerToEdit] = useState(null); // Armazena o parceiro a ser editado
+    const [isEditModalOpen, setEditModalOpen] = useState(false);
+    const [selectedPartner, setSelectedPartner] = useState(null);
+
+    useEffect(() => {
+        fetchPartners();
+    }, []);
 
     const fetchPartners = async () => {
         try {
@@ -26,17 +25,12 @@ const PartnerForm = () => {
         }
     };
 
-    useEffect(() => {
-        fetchPartners();
-    }, []);
-
     const handleChange = (e) => {
-        setPartner({
-            ...partner,
-            [e.target.name]: e.target.name === "participation"
-                ? (e.target.value ? parseFloat(e.target.value) : 0)
-                : e.target.value
-        });
+        const { name, value } = e.target;
+        setPartner((prev) => ({
+            ...prev,
+            [name]: name === "participation" ? parseFloat(value) || 0 : value
+        }));
     };
 
     const handleSubmit = async (e) => {
@@ -48,41 +42,39 @@ const PartnerForm = () => {
             fetchPartners();
         } catch (error) {
             console.error("Error creating partner:", error);
-            toast.error("Failed to create partner. Check the data.");
+            toast.error("Failed to create partner.");
         }
     };
 
     const openEditModal = (partner) => {
-        setPartnerToEdit(partner);
+        setSelectedPartner(partner);
         setEditModalOpen(true);
     };
 
     const closeEditModal = () => {
         setEditModalOpen(false);
-        setPartnerToEdit(null);
-    };
-
-    const handleUpdate = async () => {
-        if (!partnerToEdit) return;
-
-        try {
-            await updatePartner(partnerToEdit.id, partnerToEdit);
-            toast.success("Partner updated successfully!");
-            fetchPartners(); 
-            closeEditModal();
-        } catch (error) {
-            console.error("Error updating partner:", error);
-            toast.error("Failed to update partner.");
-        }
+        setSelectedPartner(null);
     };
 
     const handleEditChange = (e) => {
-        setPartnerToEdit({
-            ...partnerToEdit,
-            [e.target.name]: e.target.name === "participation"
-                ? (e.target.value ? parseFloat(e.target.value) : 0)
-                : e.target.value
-        });
+        const { name, value } = e.target;
+        setSelectedPartner((prev) => ({
+            ...prev,
+            [name]: name === "participation" ? parseFloat(value) || 0 : value
+        }));
+    };
+
+    const handleUpdate = async () => {
+        if (!selectedPartner) return;
+        try {
+            await updatePartner(selectedPartner.id, selectedPartner);
+            toast.success("Partner updated successfully!");
+            fetchPartners();
+            closeEditModal();
+        } catch (error) {
+            console.error("Error updating partner:", error);
+            toast.error("Failed to update partner. Please try again.");
+        }
     };
 
     const handleDelete = async (id) => {
@@ -101,19 +93,19 @@ const PartnerForm = () => {
             <Form onSubmit={handleSubmit}>
                 <FormGroup>
                     <Label for="firstName">First Name</Label>
-                    <Input type="text" name="firstName" id="firstName" value={partner.firstName} onChange={handleChange} />
+                    <Input type="text" name="firstName" value={partner.firstName} onChange={handleChange} />
                 </FormGroup>
                 <FormGroup>
                     <Label for="lastName">Last Name</Label>
-                    <Input type="text" name="lastName" id="lastName" value={partner.lastName} onChange={handleChange} />
+                    <Input type="text" name="lastName" value={partner.lastName} onChange={handleChange} />
                 </FormGroup>
                 <FormGroup>
                     <Label for="participation">Participation</Label>
-                    <Input type="number" name="participation" id="participation" value={partner.participation} onChange={handleChange} />
+                    <Input type="number" name="participation" value={partner.participation} onChange={handleChange} />
                 </FormGroup>
                 <FormGroup>
                     <Label for="company">Company</Label>
-                    <Input type="text" name="company" id="company" value={partner.company} onChange={handleChange} />
+                    <Input type="text" name="company" value={partner.company} onChange={handleChange} />
                 </FormGroup>
                 <Button type="submit">Submit</Button>
             </Form>
@@ -137,35 +129,13 @@ const PartnerForm = () => {
                 <p>No partners registered.</p>
             )}
 
-            <Modal isOpen={isEditModalOpen} toggle={closeEditModal}>
-                <ModalHeader toggle={closeEditModal}>Edit Partner</ModalHeader>
-                <ModalBody>
-                    {partnerToEdit && (
-                        <Form>
-                            <FormGroup>
-                                <Label for="firstName">First Name</Label>
-                                <Input type="text" name="firstName" id="firstName" value={partnerToEdit.firstName} onChange={handleEditChange} />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label for="lastName">Last Name</Label>
-                                <Input type="text" name="lastName" id="lastName" value={partnerToEdit.lastName} onChange={handleEditChange} />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label for="participation">Participation</Label>
-                                <Input type="number" name="participation" id="participation" value={partnerToEdit.participation} onChange={handleEditChange} />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label for="company">Company</Label>
-                                <Input type="text" name="company" id="company" value={partnerToEdit.company} onChange={handleEditChange} />
-                            </FormGroup>
-                        </Form>
-                    )}
-                </ModalBody>
-                <ModalFooter>
-                    <Button color="primary" onClick={handleUpdate}>Save</Button>{' '}
-                    <Button color="secondary" onClick={closeEditModal}>Cancel</Button>
-                </ModalFooter>
-            </Modal>
+            <EditPartnerModal
+                isOpen={isEditModalOpen}
+                toggle={closeEditModal}
+                partner={selectedPartner}
+                handleEditChange={handleEditChange}
+                handleUpdate={handleUpdate}
+            />
         </div>
     );
 };
