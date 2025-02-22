@@ -48,3 +48,52 @@
         width: 80%; 
     }
 }
+
+.partner-list {
+    margin-top: 20px;
+}
+
+.partner-table {
+    width: 50%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    margin-left: 50px;
+}
+
+.partner-table th, .partner-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.partner-table th {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.partner-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.partner-table tr:hover {
+    background-color: #ddd;
+}
+
+.edit-btn, .delete-btn {
+    margin-right: 5px;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.edit-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.delete-btn {
+    background-color: #f44336;
+    color: white;
+}
+

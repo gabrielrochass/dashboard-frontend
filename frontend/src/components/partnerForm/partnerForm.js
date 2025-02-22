@@ -80,19 +80,37 @@ const PartnerForm = () => {
             </form>
 
             <div className="partner-list">
-                <h2>Partner List</h2>
+                <h2>Lista de Parceiros</h2>
                 {partners.length > 0 ? (
-                    <ul>
-                        {partners.map((p) => (
-                            <li key={p.id}>
-                                {p.firstName} {p.lastName} - {p.participation} - {p.company}
-                                <button className="edit-btn" onClick={() => handleEdit(p)}>Edit</button>
-                                <button className="delete-btn" onClick={() => handleDelete(p.id)}>Delete</button>
-                            </li>
-                        ))}
-                    </ul>
+                    <table className="partner-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Sobrenome</th>
+                                <th>Participação (%)</th>
+                                <th>Empresa</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {partners.map((p) => (
+                                <tr key={p.id}>
+                                    <td>{p.id}</td>
+                                    <td>{p.firstName}</td>
+                                    <td>{p.lastName}</td>
+                                    <td>{p.participation}</td>
+                                    <td>{p.company}</td>
+                                    <td>
+                                        <button className="edit-btn" onClick={() => handleEdit(p)}>Editar</button>
+                                        <button className="delete-btn" onClick={() => handleDelete(p.id)}>Excluir</button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 ) : (
-                    <p>No partners registered.</p>
+                    <p>Nenhum parceiro cadastrado.</p>
                 )}
             </div>
             <PartnerChart partners={partners} />
