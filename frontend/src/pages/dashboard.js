@@ -1,4 +1,4 @@
-import PartnerForm from "../components/partnerForm";
+import PartnerForm from "../components/partnerForm/partnerForm";
 
 const Dashboard = () => {
     return (
