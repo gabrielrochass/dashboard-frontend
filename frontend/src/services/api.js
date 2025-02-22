@@ -34,3 +34,15 @@ export const deletePartner = async (partnerId) => {
         throw error;
     }
 };
+
+export const updatePartner = async (partnerId, partner) => {
+    try {
+        const response = await axios.put(`${API_URL}/partners/${partnerId}/`, partner, {
+            headers: { "Content-Type": "application/json" }
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error updating partner:", error.response?.data || error.message);
+        throw error;
+    }
+}
