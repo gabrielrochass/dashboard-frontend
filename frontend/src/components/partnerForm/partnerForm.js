@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { createPartner, deletePartner, getPartner, updatePartner } from "../../services/api.js";
+import PartnerChart from "../partnerChart/partnerChart";
 import "./partnerForm.css";
 
 const PartnerForm = () => {
@@ -94,6 +95,7 @@ const PartnerForm = () => {
                     <p>No partners registered.</p>
                 )}
             </div>
+            <PartnerChart partners={partners} />
         </div>
     );
 };
