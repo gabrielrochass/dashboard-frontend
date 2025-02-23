@@ -21,20 +21,14 @@ const PartnerChart = ({ partners }) => {
     // Paleta de cores predefinida
     const colors = ["#FF6384", "#36A2EB", "#FFCE56", "#4CAF50", "#9C27B0", "#FF9800", "#8E44AD", "#3498DB", "#E74C3C", "#2ECC71"];
 
-    // Filtrar os dados com base nos filtros selecionados
-    const filteredCompanies = Object.keys(companies).reduce((acc, company) => {
-        const filteredPartners = companies[company].filter(partner => {
-            return (
-                (!selectedCompany || partner.company === selectedCompany) &&
-                (!selectedFirstName || partner.firstName.includes(selectedFirstName)) &&
-                (!selectedLastName || partner.lastName.includes(selectedLastName))
-            );
-        });
-        if (filteredPartners.length > 0) {
-            acc[company] = filteredPartners;
-        }
-        return acc;
-    }, {});
+    // Função para verificar se um parceiro corresponde aos filtros
+    const matchesFilters = (partner) => {
+        return (
+            (!selectedCompany || partner.company === selectedCompany) &&
+            (!selectedFirstName || partner.firstName.includes(selectedFirstName)) &&
+            (!selectedLastName || partner.lastName.includes(selectedLastName))
+        );
+    };
 
     return (
         <div>
@@ -70,8 +64,8 @@ const PartnerChart = ({ partners }) => {
                     onChange={(e) => setSelectedLastName(e.target.value)}
                 />
             </div>
-            {Object.keys(filteredCompanies).map((company) => {
-                const companyData = filteredCompanies[company];
+            {Object.keys(companies).map((company) => {
+                const companyData = companies[company];
 
                 // Calcular a soma total de participação
                 const totalParticipation = companyData.reduce((sum, p) => sum + Number(p.participation), 0);
@@ -100,12 +94,15 @@ const PartnerChart = ({ partners }) => {
                     ]
                 };
 
-                return (
+                // Verificar se algum parceiro da empresa corresponde aos filtros
+                const showChart = companyData.some(matchesFilters);
+
+                return showChart ? (
                     <div key={company} style={{ width: "300px", margin: "20px auto" }}>
                         <h3>{company}</h3>
                         <Pie data={data} />
                     </div>
-                );
+                ) : null;
             })}
         </div>
     );
