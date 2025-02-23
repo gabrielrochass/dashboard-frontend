@@ -1,6 +1,7 @@
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js";
 import React, { useState } from "react";
 import { Pie } from "react-chartjs-2";
+import "./partnerChart.css";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 

@@ -113,7 +113,9 @@ const PartnerForm = () => {
                     <p>Nenhum parceiro cadastrado.</p>
                 )}
             </div>
-            <PartnerChart partners={partners} />
+            <div className="partner-chart">
+                <PartnerChart partners={partners} />
+            </div>
         </div>
     );
 };

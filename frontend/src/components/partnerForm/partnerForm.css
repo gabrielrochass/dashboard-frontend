@@ -97,3 +97,10 @@
     color: white;
 }
 
+.partner-chart {
+    width: 45%;
+    margin-top: 10px;
+    margin-left: 20px;
+    display: inline-block;
+    vertical-align: top;
+}
