@@ -1,10 +1,15 @@
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js";
-import React from "react";
+import React, { useState } from "react";
 import { Pie } from "react-chartjs-2";
+import "./partnerChart.css";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PartnerChart = ({ partners }) => {
+    const [selectedCompany, setSelectedCompany] = useState("");
+    const [selectedFirstName, setSelectedFirstName] = useState("");
+    const [selectedLastName, setSelectedLastName] = useState("");
+
     // Agrupar os dados por empresa
     const companies = partners.reduce((acc, partner) => {
         if (!acc[partner.company]) {
@@ -17,9 +22,49 @@ const PartnerChart = ({ partners }) => {
     // Paleta de cores predefinida
     const colors = ["#FF6384", "#36A2EB", "#FFCE56", "#4CAF50", "#9C27B0", "#FF9800", "#8E44AD", "#3498DB", "#E74C3C", "#2ECC71"];
 
+    // Função para verificar se um parceiro corresponde aos filtros
+    const matchesFilters = (partner) => {
+        return (
+            (!selectedCompany || partner.company === selectedCompany) &&
+            (!selectedFirstName || partner.firstName.includes(selectedFirstName)) &&
+            (!selectedLastName || partner.lastName.includes(selectedLastName))
+        );
+    };
+
     return (
         <div>
             <h2>Distribuição de Participação por Empresa</h2>
+            <div>
+                <label htmlFor="companyFilter">Filtrar por Empresa: </label>
+                <select
+                    id="companyFilter"
+                    value={selectedCompany}
+                    onChange={(e) => setSelectedCompany(e.target.value)}
+                >
+                    <option value="">Todas</option>
+                    {Object.keys(companies).map((company) => (
+                        <option key={company} value={company}>
+                            {company}
+                        </option>
+                    ))}
+                </select>
+            </div>
+            <div>
+                <label htmlFor="firstNameFilter">Filtrar por Primeiro Nome: </label>
+                <input
+                    id="firstNameFilter"
+                    value={selectedFirstName}
+                    onChange={(e) => setSelectedFirstName(e.target.value)}
+                />
+            </div>
+            <div>
+                <label htmlFor="lastNameFilter">Filtrar por Sobrenome: </label>
+                <input
+                    id="lastNameFilter"
+                    value={selectedLastName}
+                    onChange={(e) => setSelectedLastName(e.target.value)}
+                />
+            </div>
             {Object.keys(companies).map((company) => {
                 const companyData = companies[company];
 
@@ -50,12 +95,15 @@ const PartnerChart = ({ partners }) => {
                     ]
                 };
 
-                return (
+                // Verificar se algum parceiro da empresa corresponde aos filtros
+                const showChart = companyData.some(matchesFilters);
+
+                return showChart ? (
                     <div key={company} style={{ width: "300px", margin: "20px auto" }}>
                         <h3>{company}</h3>
                         <Pie data={data} />
                     </div>
-                );
+                ) : null;
             })}
         </div>
     );
