@@ -1,8 +1,8 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import PartnerHistory from "./components/history/history.js";
 import "./index.css";
 import Dashboard from "./pages/dashboard.js";
-
 
 function App() {
   return (
@@ -12,7 +12,9 @@ function App() {
           <div>
             <ToastContainer />
             <Dashboard />
-          </div>} />
+          </div>} 
+        />
+        <Route path="/history" element={<PartnerHistory />} /> {/* Usando o componente correto */}
       </Routes>
     </Router>
   );
