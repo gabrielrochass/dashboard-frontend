@@ -60,21 +60,23 @@ function ShowPartners() {
                     type="text"
                     name="name"
                     placeholder="Name"
+                    value={filters.name}
                     onChange={handleFilter}
                 />
                 <input
                     type="text"
                     name="cpf"
                     placeholder="CPF"
+                    value={filters.cpf}
                     onChange={handleFilter}
                 />
                 <input
                     type="text"
                     name="email"
                     placeholder="Email"
+                    value={filters.email}
                     onChange={handleFilter}
                 />
-                <button onClick={fetchPartners}>Search</button>
                 <button onClick={resetFilters}>Reset Filters</button>
             </div>
 
