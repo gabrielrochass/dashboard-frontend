@@ -1,6 +1,5 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify"; // pop up notifications
-import CreatePartner from "./components/partners/createPartner";
 import ShowPartners from "./components/partners/showPartners";
 import "./index.css";
 
@@ -24,7 +23,6 @@ function App() {
         <Route path="/partners" element={
           <div>
             <ToastContainer/>
-            <CreatePartner/>
             <ShowPartners/>
           </div>} />
         

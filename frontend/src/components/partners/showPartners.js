@@ -4,6 +4,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import CreatePartner from "./createPartner";
 
 function ShowPartners() {
     const [partners, setPartners] = useState([]);
@@ -23,11 +24,11 @@ function ShowPartners() {
 
     return (
         <div className="container">
+            <CreatePartner onCreatedLine={getPartners} />
+            
             <div className="title">
                 <h1>Partners</h1>
             </div>
-
-            {/* <CreatePartner onCreatedLine={getPartners} /> */}
 
             <div className="row">
                 <div className="col-md-6">

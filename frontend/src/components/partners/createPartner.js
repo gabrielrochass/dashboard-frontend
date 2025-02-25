@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-function CreatePartner() {
+function CreatePartner({ onCreatedLine }) {
     const [name, setName] = useState("");
     const [cpf, setCpf] = useState("");
     const [email, setEmail] = useState("");
@@ -19,8 +19,11 @@ function CreatePartner() {
             setName("");
             setCpf("");
             setEmail("");
+
+            onCreatedLine();
         } catch (error) {
             toast.error("Failed to create partner!");
+            toast.error(`Erro: ${error.response ? error.response.data.detail : "Falha ao criar parceiro"}`);
         }
     };
 
