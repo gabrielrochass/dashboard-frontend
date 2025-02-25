@@ -46,9 +46,10 @@ function CreatePartner({ onCreatedLine, partnerToEdit }) {
             }
             
             resetForm();
-            onCreatedLine(); // Atualiza a lista apenas após o sucesso
+            onCreatedLine(); 
         } catch (error) {
             toast.error(`Failed to ${isEditing ? "edit" : "create"} partner!`);
+            toast.error(error.response);
         }
     };
 
@@ -94,22 +95,20 @@ function CreatePartner({ onCreatedLine, partnerToEdit }) {
                             />
                         </div>
 
-                        {/* Botão de Criar */}
                         {!isEditing && (
-                            <button type="submit" className="btn btn-success">
+                            <button type="submit" className="create btn">
                                 Create Partner
                             </button>
                         )}
 
-                        {/* Botão de Editar */}
                         {isEditing && (
                             <>
-                                <button type="submit" className="btn btn-primary">
+                                <button type="submit" className="save-changes btn">
                                     Save Changes
                                 </button>
                                 <button
                                     type="button"
-                                    className="btn btn-secondary ml-2"
+                                    className="cancel btn"
                                     onClick={resetForm}
                                 >
                                     Cancel
