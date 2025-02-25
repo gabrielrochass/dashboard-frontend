@@ -82,39 +82,31 @@ function ShowPartners() {
 
 
             <table className="table">
-                <thead>
+                {partners.length === 0 ? (
                     <tr>
-                        <th></th>
-                        <th>Name</th>
-                        <th>CPF</th>
-                        <th>Email</th>
-                        <th>Actions</th>
+                        <td colSpan={4}>No partners found.</td>
                     </tr>
-                </thead>
-                <tbody>
-                    {partners.map((partner) => (
-                        <tr key={partner.id}>
-                            <td>{partner.id}</td>
-                            <td>{partner.name}</td>
-                            <td>{partner.cpf}</td>
-                            <td>{partner.email}</td>
-                            <td>
-                                <button 
-                                    className="edit btn"
-                                    onClick={() => setSelectedPartner(partner)}
-                                >
-                                    Edit
-                                </button>
-                                <button 
-                                    className="delete btn"
-                                    onClick={() => handleDelete(partner.id)}
-                                >
-                                    Delete
-                                </button>
-                            </td>
+                ) : (
+                    <>
+                        <tr>
+                            <th>Name</th>
+                            <th>CPF</th>
+                            <th>Email</th>
+                            <th>Actions</th>
                         </tr>
-                    ))}
-                </tbody>
+                        {partners.map((partner) => (
+                            <tr key={partner.id}>
+                                <td>{partner.name}</td>
+                                <td>{partner.cpf}</td>
+                                <td>{partner.email}</td>
+                                <td>
+                                    <button onClick={() => setSelectedPartner(partner)}>Edit</button>
+                                    <button onClick={() => handleDelete(partner.id)}>Delete</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </>
+                )}
             </table>
         </div>
     );
