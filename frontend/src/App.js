@@ -1,5 +1,6 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify"; // pop up notifications
+import ShowCompany from "./components/companies/showCompany";
 import ShowPartners from "./components/partners/showPartners";
 import "./index.css";
 
@@ -29,7 +30,7 @@ function App() {
         <Route path="/companies" element={
           <div>
             <ToastContainer/>
-            {/* <Companies/> */}
+            <ShowCompany/>
           </div>} />
       
       </Routes>

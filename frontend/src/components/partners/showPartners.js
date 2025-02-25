@@ -84,11 +84,12 @@ function ShowPartners() {
             <table className="table">
                 {partners.length === 0 ? (
                     <tr>
-                        <td colSpan={4}>No partners found.</td>
+                        <td colSpan={5}>No partners found.</td>
                     </tr>
                 ) : (
                     <>
                         <tr>
+                            <th></th>
                             <th>Name</th>
                             <th>CPF</th>
                             <th>Email</th>
@@ -96,6 +97,7 @@ function ShowPartners() {
                         </tr>
                         {partners.map((partner) => (
                             <tr key={partner.id}>
+                                <td>{partner.id}</td>
                                 <td>{partner.name}</td>
                                 <td>{partner.cpf}</td>
                                 <td>{partner.email}</td>

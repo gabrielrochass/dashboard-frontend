@@ -95,14 +95,8 @@ function CreatePartner({ onCreatedLine, partnerToEdit }) {
                             />
                         </div>
 
-                        {!isEditing && (
-                            <button type="submit" className="create btn">
-                                Create Partner
-                            </button>
-                        )}
-
-                        {isEditing && (
-                            <>
+                        {isEditing ? (
+                            <div>
                                 <button type="submit" className="save-changes btn">
                                     Save Changes
                                 </button>
@@ -113,7 +107,11 @@ function CreatePartner({ onCreatedLine, partnerToEdit }) {
                                 >
                                     Cancel
                                 </button>
-                            </>
+                            </div>
+                        ) : (
+                            <button type="submit" className="create btn">
+                                Create Partner
+                            </button>
                         )}
                     </form>
                 </div>
