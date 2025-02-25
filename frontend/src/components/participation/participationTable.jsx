@@ -6,12 +6,24 @@ import ParticipationForm from "./participationForm";
 function ParticipationTable() {
     const [participations, setParticipations] = useState([]);
     const [participationToEdit, setParticipationToEdit] = useState(null);
+    const [partners, setPartners] = useState([]);
+    const [companies, setCompanies] = useState([]);
+    const fetchPartnersAndCompanies = async () => {
+        try {
+            const partnersResponse = await axios.get("http://127.0.0.1:8000/partners/");
+            const companiesResponse = await axios.get("http://127.0.0.1:8000/companies/");
+            setPartners(partnersResponse.data);
+            setCompanies(companiesResponse.data);
+        } catch (error) {
+            toast.error("Failed to fetch partners and companies!");
+        }
+    };
+
     const [filters, setFilters] = useState({ partner: "", company: "", percentage: "" });
-    const partners = [{ id: 1, name: "Partner 1" }, { id: 2, name: "Partner 2" }];
-    const companies = [{ id: 1, name: "Company 1" }, { id: 2, name: "Company 2" }];
 
     const fetchParticipations = async () => {
         try {
+            await fetchPartnersAndCompanies();
             const response = await axios.get("http://127.0.0.1:8000/participations/", {
                 params: filters,
             });
