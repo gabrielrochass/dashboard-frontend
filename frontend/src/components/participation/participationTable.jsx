@@ -1,0 +1,118 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import ParticipationForm from "./participationForm";
+
+function ParticipationTable() {
+    const [participations, setParticipations] = useState([]);
+    const [participationToEdit, setParticipationToEdit] = useState(null);
+    const [filters, setFilters] = useState({ partner: "", company: "", percentage: "" });
+    const partners = [{ id: 1, name: "Partner 1" }, { id: 2, name: "Partner 2" }];
+    const companies = [{ id: 1, name: "Company 1" }, { id: 2, name: "Company 2" }];
+
+    const fetchParticipations = async () => {
+        try {
+            const response = await axios.get("http://127.0.0.1:8000/participations/", {
+                params: filters,
+            });
+            setParticipations(response.data);
+        } catch (error) {
+            toast.error("Failed to fetch participations!");
+        }
+    };
+
+    const handleDelete = async (id) => {
+        try {
+            await axios.delete(`http://127.0.0.1:8000/participations/${id}/`);
+            toast.success("Participation deleted successfully!");
+            fetchParticipations();
+        } catch (error) {
+            toast.error("Failed to delete participation!");
+        }
+    };
+
+    const handleFilter = (e) => {
+        setFilters({
+            ...filters,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const resetFilters = () => {
+        setFilters({ partner: "", company: "", percentage: "" });
+        fetchParticipations();
+    };
+
+    useEffect(() => {
+        fetchParticipations();
+    }
+    , [filters]);
+
+    return ( 
+        <div className="container">
+            <ParticipationForm 
+                onCreatedLine={fetchParticipations} 
+                participationToEdit={participationToEdit} 
+            />
+
+            <h1>Participations</h1>
+
+            <div className="filters">
+                <h2>Filters</h2>
+                <select name="partner" onChange={handleFilter}>
+                    <option value="">Select a partner</option>
+                    {partners.map((partner) => (
+                        <option key={partner.id} value={partner.id}>
+                            {partner.name}
+                        </option>
+                    ))}
+                </select>
+                <select name="company" onChange={handleFilter}>
+                    <option value="">Select a company</option>
+                    {companies.map((company) => (
+                        <option key={company.id} value={company.id}>
+                            {company.name}
+                        </option>
+                    ))}
+                </select>
+                <input
+                    type="number"
+                    name="percentage"
+                    value={filters.percentage}
+                    onChange={handleFilter}
+                    placeholder="Percentage"
+                />
+                <button onClick={resetFilters}>Reset Filters</button>
+            </div>
+
+        <table className="table">
+            {participations.length === 0 ? (
+                <tr>
+                    <td colSpan={5}>No participations found.</td>
+                </tr>
+            ) : (
+                <tr>
+                    <th>Partner</th>
+                    <th>Company</th>
+                    <th>Percentage</th>
+                    <th>Actions</th>
+                </tr>
+            )}
+            {participations.map((participation) => (
+                <tr key={participation.id}>
+                    <td>{participation.partner.name}</td>
+                    <td>{participation.company.name}</td>
+                    <td>{participation.percentage}</td>
+                    <td>
+                        <button onClick={() => setParticipationToEdit(participation)}>Edit</button>
+                        <button onClick={() => handleDelete(participation.id)}>Delete</button>
+                    </td>
+                </tr>
+            ))}
+        </table>
+    </div>
+);
+}
+
+export default ParticipationTable;
+        

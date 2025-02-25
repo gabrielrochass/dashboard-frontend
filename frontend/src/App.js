@@ -1,6 +1,7 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify"; // pop up notifications
 import ShowCompany from "./components/companies/showCompany";
+import ParticipationTable from "./components/participation/participationTable";
 import ShowPartners from "./components/partners/showPartners";
 import "./index.css";
 
@@ -17,6 +18,7 @@ function App() {
               <ul>
                 <li><a href="/partners">Partners</a></li>
                 <li><a href="/companies">Companies</a></li>
+                <li><a href="/participation">Participation</a></li>
               </ul>
             </nav>
           </div>} />
@@ -31,6 +33,12 @@ function App() {
           <div>
             <ToastContainer/>
             <ShowCompany/>
+          </div>} />
+
+        <Route path="/participation" element={
+          <div>
+            <ParticipationTable/>
+            {/* <ParticipationForm/> */}
           </div>} />
       
       </Routes>

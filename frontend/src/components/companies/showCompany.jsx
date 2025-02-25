@@ -87,6 +87,7 @@ function ShowCompany() {
                     </tr>
                 ) : (
                     <tr>
+                        <th></th>
                         <th>Name</th>
                         <th>CNPJ</th>
                         <th>Address</th>
@@ -95,6 +96,7 @@ function ShowCompany() {
                 )}
                 {companies.map((company) => (
                     <tr key={company.id}>
+                        <td>{company.id}</td>
                         <td>{company.name}</td>
                         <td>{company.cnpj}</td>
                         <td>{company.address}</td>

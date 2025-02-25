@@ -55,6 +55,10 @@ function CreatePartner({ onCreatedLine, partnerToEdit }) {
 
     return (
         <div className="container">
+            <ul>
+                <li><a href="/">Voltar</a></li>
+            </ul>
+            
             <div className="title">
                 <h1>{isEditing ? "Edit Partner" : "Create Partner"}</h1>
             </div>
