@@ -92,6 +92,7 @@ function ParticipationTable() {
                 </tr>
             ) : (
                 <tr>
+                    <th></th>
                     <th>Partner</th>
                     <th>Company</th>
                     <th>Percentage</th>
@@ -100,8 +101,9 @@ function ParticipationTable() {
             )}
             {participations.map((participation) => (
                 <tr key={participation.id}>
-                    <td>{participation.partner.name}</td>
-                    <td>{participation.company.name}</td>
+                    <td>{participation.id}</td>
+                    <td>{participation.partnerName}</td>
+                    <td>{participation.companyName}</td>
                     <td>{participation.percentage}</td>
                     <td>
                         <button onClick={() => setParticipationToEdit(participation)}>Edit</button>
