@@ -1,19 +1,17 @@
-// mostra a lista de parceiros
-// GET -> guarda em um useState -> renderiza a lista
-
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import CreatePartner from "./createPartner";
 
 function ShowPartners() {
     const [partners, setPartners] = useState([]);
+    const [selectedPartner, setSelectedPartner] = useState(null);
 
-    useEffect(() => { 
-        getPartners();
+    useEffect(() => {
+        fetchPartners();
     }, []);
 
-    const getPartners = async () => {
+    const fetchPartners = async () => {
         try {
             const response = await axios.get("http://127.0.0.1:8000/partners/");
             setPartners(response.data);
@@ -22,37 +20,60 @@ function ShowPartners() {
         }
     };
 
+    const handleDelete = async (id) => {
+        try {
+            await axios.delete(`http://127.0.0.1:8000/partners/${id}/`);
+            toast.success("Partner deleted successfully!");
+            fetchPartners(); 
+        } catch (error) {
+            toast.error("Failed to delete partner!");
+        }
+    };
+
     return (
         <div className="container">
-            <CreatePartner onCreatedLine={getPartners} />
-            
-            <div className="title">
-                <h1>Partners</h1>
-            </div>
+            <CreatePartner 
+                onCreatedLine={fetchPartners} 
+                partnerToEdit={selectedPartner} 
+            />
 
-            <div className="row">
-                <div className="col-md-6">
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>CPF</th>
-                                <th>Email</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {partners.map((partner) => (
-                                <tr key={partner.id}>
-                                    <td>{partner.name}</td>
-                                    <td>{partner.cpf}</td>
-                                    <td>{partner.email}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <h1>Partners</h1>
+
+            <table className="table mt-4">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>CPF</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {partners.map((partner) => (
+                        <tr key={partner.id}>
+                            <td>{partner.name}</td>
+                            <td>{partner.cpf}</td>
+                            <td>{partner.email}</td>
+                            <td>
+                                <button 
+                                    className="btn btn-primary btn-sm"
+                                    onClick={() => setSelectedPartner(partner)}
+                                >
+                                    Edit
+                                </button>
+                                <button 
+                                    className="btn btn-danger btn-sm ml-2"
+                                    onClick={() => handleDelete(partner.id)}
+                                >
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     );
 }
+
 export default ShowPartners;
