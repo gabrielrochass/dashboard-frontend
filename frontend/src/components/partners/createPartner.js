@@ -26,6 +26,9 @@ function CreatePartner() {
 
     return (
         <div className="container">
+            <div className="title">
+                <h1>Create Partner</h1>
+            </div>
             <div className="row">
                 <div className="col-md-6">
                     <form onSubmit={createPartner}>
