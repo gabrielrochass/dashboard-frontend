@@ -15,8 +15,8 @@ function ParticipationForm({ onCreatedLine, participationToEdit }) {
         fetchCompanies();
 
         if (participationToEdit) {
-            setPartnerId(participationToEdit.partner.id);
-            setCompanyId(participationToEdit.company.id);
+            setPartnerId(participationToEdit.partner);
+            setCompanyId(participationToEdit.company);
             setPercentage(participationToEdit.percentage);
             setIsEditing(true);
         } else {
@@ -28,6 +28,7 @@ function ParticipationForm({ onCreatedLine, participationToEdit }) {
         try {
             const response = await axios.get("http://127.0.0.1:8000/partners/");
             setPartners(response.data);
+            toast.success("Partners fetched successfully!");
         } catch (error) {
             toast.error("Failed to fetch partners!");
         }
@@ -37,6 +38,7 @@ function ParticipationForm({ onCreatedLine, participationToEdit }) {
         try {
             const response = await axios.get("http://127.0.0.1:8000/companies/");
             setCompanies(response.data);
+            toast.success("Companies fetched successfully!");
         } catch (error) {
             toast.error("Failed to fetch companies!");
         }
