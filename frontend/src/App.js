@@ -4,6 +4,7 @@ import ShowCompany from "./components/companies/showCompany";
 import ParticipationTable from "./components/participation/participationTable";
 import ShowPartners from "./components/partners/showPartners";
 import "./index.css";
+import Dashboard from "./pages/dashboard.js";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
                 <li><a href="/partners">Partners</a></li>
                 <li><a href="/companies">Companies</a></li>
                 <li><a href="/participation">Participation</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
               </ul>
             </nav>
           </div>} />
@@ -37,8 +39,15 @@ function App() {
 
         <Route path="/participation" element={
           <div>
+            <ToastContainer/>
             <ParticipationTable/>
-            {/* <ParticipationForm/> */}
+          </div>} />
+        
+        <Route path="/dashboard" element={
+          <div>
+            <ToastContainer/>
+            {/* <GeneralDashboard /> */}
+            <Dashboard />
           </div>} />
       
       </Routes>
