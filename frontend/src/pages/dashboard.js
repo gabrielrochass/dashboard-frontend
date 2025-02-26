@@ -34,7 +34,6 @@ const Dashboard = () => {
                 <li><a href="/">Voltar</a></li>
             </ul>
             
-            <h2>General Dashboard</h2>
             {stats ? <GeneralDashboard stats={stats} /> : <p>No data available.</p>}
         </div>
     );

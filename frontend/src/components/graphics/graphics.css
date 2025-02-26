@@ -1,27 +1,86 @@
 .dashboard-charts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
     padding: 20px;
-    background: #f8f9fa;
-    text-align: center;
-  }
-  
-  h2 {
-    margin-bottom: 20px;
-  }
-  
-  .chart-container {
-    background: white;
+    background-color: #f4f4f9;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.highlight-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background: #ffffff;
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
-  }
-  
-  .highlight-container {
-    margin-top: 20px;
-  }
-  
-  .highlight-container h3 {
-    font-size: 18px;
-    color: #007bff;
-  }
-  
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.highlight-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.highlight-container h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+}
+
+.highlight-container span {
+    color: #4E79A7; /* Adjusted color */
+    font-size: 40px;
+    margin-top: 15px;
+}
+
+.chart-container {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chart-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.chart-container h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.header h1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 48px;
+    font-weight: 700;
+    color: #2c3e50;
+    background: linear-gradient(90deg, #4E79A7 0%, #F28E2B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+@media (max-width: 768px) {
+    .dashboard-charts {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+
+    .highlight-container, .chart-container {
+        padding: 15px;
+    }
+}

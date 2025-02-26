@@ -1,6 +1,6 @@
 import React from "react";
 import { Bar, BarChart, Cell, Pie, PieChart, PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-// import "./graphics.css";
+import "./graphics.css";
 
 const GeneralDashboard = ({ stats }) => {
     const barData = [
@@ -20,12 +20,26 @@ const GeneralDashboard = ({ stats }) => {
         { metric: "Total Companies", value: stats.totalCompanies },
     ];
 
+    const COLORS = ["#4E79A7", "#F28E2B", "#E15759", "#76B7B2"];
+
     return (
         <div className="dashboard-charts">
 
+            <div className="header">
+                <h1>General Dashboard</h1>
+            </div>
+
             <div className="highlight-container">
-                <h3>Company with Most Partners: <span>{stats.companyMostPartners}</span></h3>
-                <h3>Partner with Most Companies: <span>{stats.partnerMostCompanies}</span></h3>
+                <h3>Company with Most Partners: 
+                    <div className="highlight-company">
+                        <span>{stats.companyMostPartners}</span>
+                    </div>
+                </h3>
+                <h3>Partner with Most Companies:
+                    <div className="highlight-company">
+                        <span>{stats.partnerMostCompanies}</span>
+                    </div>
+                </h3>
             </div>
 
             <div className="chart-container">
@@ -35,7 +49,11 @@ const GeneralDashboard = ({ stats }) => {
                         <XAxis dataKey="name" />
                         <YAxis />
                         <Tooltip />
-                        <Bar dataKey="value" fill="#007bff" />
+                        <Bar dataKey="value">
+                            {barData.map((entry, index) => (
+                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                            ))}
+                        </Bar>
                     </BarChart>
                 </ResponsiveContainer>
             </div>
@@ -44,9 +62,10 @@ const GeneralDashboard = ({ stats }) => {
                 <h3>Average Participation Percentage</h3>
                 <ResponsiveContainer width="100%" height={250}>
                     <PieChart>
-                        <Pie data={pieData} cx="50%" cy="50%" outerRadius={80} fill="#007bff" dataKey="value" label>
-                            <Cell key="a" fill="#007bff" />
-                            <Cell key="b" fill="#ddd" />
+                        <Pie data={pieData} cx="50%" cy="50%" outerRadius={80} dataKey="value" label>
+                            {pieData.map((entry, index) => (
+                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                            ))}
                         </Pie>
                         <Tooltip />
                     </PieChart>
@@ -60,7 +79,7 @@ const GeneralDashboard = ({ stats }) => {
                         <XAxis dataKey="name" />
                         <YAxis />
                         <Tooltip />
-                        <Bar dataKey="value" fill="#007bff" />
+                        <Bar dataKey="value" fill={COLORS[0]} />
                     </BarChart>
                 </ResponsiveContainer>
             </div>
@@ -72,7 +91,7 @@ const GeneralDashboard = ({ stats }) => {
                         <PolarGrid />
                         <PolarAngleAxis dataKey="metric" />
                         <PolarRadiusAxis />
-                        <Radar name="Metrics" dataKey="value" stroke="#007bff" fill="#007bff" fillOpacity={0.6} />
+                        <Radar name="Metrics" dataKey="value" stroke={COLORS[0]} fill={COLORS[0]} fillOpacity={0.6} />
                         <Tooltip />
                     </RadarChart>
                 </ResponsiveContainer>
