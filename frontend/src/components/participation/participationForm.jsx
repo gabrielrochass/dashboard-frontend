@@ -111,6 +111,7 @@ function ParticipationForm({ onCreatedLine, participationToEdit }) {
                     <input
                         type="number"
                         placeholder="Percentage"
+                        className="form-control"
                         value={percentage}
                         onChange={(e) => setPercentage(e.target.value)}
                         required
