@@ -112,9 +112,24 @@ function ParticipationForm({ onCreatedLine, participationToEdit }) {
                     required
                 />
 
-                <button type="submit">
-                    {isEditing ? "Edit" : "Create"}
-                </button>
+                {isEditing ? (
+                    <div>
+                        <button type="submit" className="save-changes btn">
+                            Save Changes
+                        </button>
+                        <button
+                            type="button"
+                            className="cancel btn"
+                            onClick={resetForm}
+                        >
+                            Cancel
+                        </button>
+                    </div>
+                ) : (
+                    <button type="submit" className="create btn">
+                        Create Partner
+                    </button>
+                )}  
             </form>
         </div>
     );

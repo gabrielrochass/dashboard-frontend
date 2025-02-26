@@ -8,6 +8,7 @@ function ParticipationTable() {
     const [participationToEdit, setParticipationToEdit] = useState(null);
     const [partners, setPartners] = useState([]);
     const [companies, setCompanies] = useState([]);
+    
     const fetchPartnersAndCompanies = async () => {
         try {
             const partnersResponse = await axios.get("http://127.0.0.1:8000/partners/");
@@ -71,7 +72,7 @@ function ParticipationTable() {
 
             <div className="filters">
                 <h2>Filters</h2>
-                <select name="partner" onChange={handleFilter}>
+                <select name="partner" value={filters.partner} onChange={handleFilter}>
                     <option value="">Select a partner</option>
                     {partners.map((partner) => (
                         <option key={partner.id} value={partner.id}>
@@ -79,7 +80,7 @@ function ParticipationTable() {
                         </option>
                     ))}
                 </select>
-                <select name="company" onChange={handleFilter}>
+                <select name="company" value={filters.company} onChange={handleFilter}>
                     <option value="">Select a company</option>
                     {companies.map((company) => (
                         <option key={company.id} value={company.id}>
