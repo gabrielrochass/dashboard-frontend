@@ -28,7 +28,6 @@ function ParticipationForm({ onCreatedLine, participationToEdit }) {
         try {
             const response = await axios.get("http://127.0.0.1:8000/partners/");
             setPartners(response.data);
-            toast.success("Partners fetched successfully!");
         } catch (error) {
             toast.error("Failed to fetch partners!");
         }
@@ -38,7 +37,6 @@ function ParticipationForm({ onCreatedLine, participationToEdit }) {
         try {
             const response = await axios.get("http://127.0.0.1:8000/companies/");
             setCompanies(response.data);
-            toast.success("Companies fetched successfully!");
         } catch (error) {
             toast.error("Failed to fetch companies!");
         }
