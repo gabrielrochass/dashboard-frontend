@@ -72,22 +72,20 @@ function ParticipationTable() {
 
             <div className="filters">
                 <h2>Filters</h2>
-                <select name="partner" value={filters.partner} onChange={handleFilter}>
-                    <option value="">Select a partner</option>
-                    {partners.map((partner) => (
-                        <option key={partner.id} value={partner.id}>
-                            {partner.name}
-                        </option>
-                    ))}
-                </select>
-                <select name="company" value={filters.company} onChange={handleFilter}>
-                    <option value="">Select a company</option>
-                    {companies.map((company) => (
-                        <option key={company.id} value={company.id}>
-                            {company.name}
-                        </option>
-                    ))}
-                </select>
+                <input
+                    type="text"
+                    name="partner"
+                    value={filters.partner}
+                    onChange={handleFilter}
+                    placeholder="Partner"
+                />
+                <input
+                    type="text"
+                    name="company"
+                    value={filters.company}
+                    onChange={handleFilter}
+                    placeholder="Company"
+                />
                 <input
                     type="number"
                     name="percentage"
