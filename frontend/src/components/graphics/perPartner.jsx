@@ -54,14 +54,14 @@ function PerPartner() {
         }, {});
 
     return (
-        <div className="p-4">
-            <h2 className="text-lg font-semibold mb-2">Per Partner</h2>
+        <div className="per-partner-container">
+            <h2 className="per-partner-title">Per Partner</h2>
             <select
                 onChange={(e) => {
                     setSelectedPartner(e.target.value);
                     fetchPartnerData(e.target.value);
                 }}
-                className="border p-2 rounded-md mb-4"
+                className="partner-select"
             >
                 <option value="">Select a partner</option>
                 {partners.map((partner) => (
@@ -72,8 +72,8 @@ function PerPartner() {
             </select>
 
             {data && (
-                <div className="mt-4">
-                    <h3 className="text-xl font-semibold">{data.partner}</h3>
+                <div className="partner-data-container">
+                    <h3 className="partner-name">{data.partner}</h3>
                     <ResponsiveContainer width="100%" height={300}>
                         <BarChart data={Object.keys(groupedByCompany).map(company => ({ name: company, value: groupedByCompany[company].reduce((sum, p) => sum + p.value, 0) }))} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
                             <CartesianGrid strokeDasharray="3 3" />
@@ -100,7 +100,7 @@ function PerPartner() {
                         </div>
                     </ResponsiveContainer>
 
-                    <h3 className="text-xl font-semibold mt-6">Participation per Company</h3>
+                    <h3 className="participation-title">Participation per Company</h3>
                     {Object.keys(groupedByCompany).map((company, index) => {
                         const totalParticipation = groupedByCompany[company].reduce((sum, p) => sum + p.value, 0);
                         const remaining = totalParticipation < 100 ? 100 - totalParticipation : 0;
@@ -111,8 +111,8 @@ function PerPartner() {
                         ].filter(Boolean);
 
                         return (
-                            <div key={index} className="mb-6">
-                                <h4 className="text-lg font-semibold">{company}</h4>
+                            <div key={index} className="company-participation-container">
+                                <h4 className="company-name">{company}</h4>
                                 <ResponsiveContainer width="100%" height={400}>
                                     <PieChart>
                                         <Pie

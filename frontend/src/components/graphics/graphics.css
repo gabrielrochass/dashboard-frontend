@@ -84,3 +84,13 @@
         padding: 15px;
     }
 }
+
+.chart-container-all {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    background-color: #f4f4f9;
+    margin: 0 auto;
+    max-width: 1200px;
+}

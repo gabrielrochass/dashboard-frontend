@@ -42,7 +42,7 @@ function ShowAll() {
     }, {});
 
     return (
-        <div className="dashboard-container">
+        <div className="dashboard-all">
             <h2 className="dashboard-title">Participation per Company</h2>
             {Object.keys(groupedByCompany).map((company, index) => {
                 const totalParticipation = groupedByCompany[company].reduce((sum, p) => sum + p.value, 0);
@@ -50,7 +50,7 @@ function ShowAll() {
 
                 const data = [
                     ...groupedByCompany[company],
-                    remaining > 0 ? { name: "Others", value: remaining } : null
+                    remaining > 0 ? { name: "Unsigned", value: remaining } : null
                 ].filter(Boolean);
 
                 return (
@@ -68,7 +68,10 @@ function ShowAll() {
                                     label={(entry) => `${entry.name}: ${entry.value.toFixed(2)}%`}
                                 >
                                     {data.map((entry, idx) => (
-                                        <Cell key={`cell-${idx}`} fill={COLORS[idx % COLORS.length]} />
+                                        <Cell 
+                                            key={`cell-${idx}`} 
+                                            fill={entry.name === "Unsigned" ? "gray" : COLORS[idx % COLORS.length]} 
+                                        />
                                     ))}
                                 </Pie>
                                 <Tooltip />

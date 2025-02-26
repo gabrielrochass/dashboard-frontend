@@ -1,6 +1,7 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify"; // pop up notifications
 import ShowCompany from "./components/companies/showCompany";
+import PerCompany from "./components/graphics/perCompany.jsx";
 import PerPartner from "./components/graphics/perPartner.jsx";
 import ParticipationTable from "./components/participation/participationTable";
 import ShowPartners from "./components/partners/showPartners";
@@ -49,6 +50,7 @@ function App() {
             <ToastContainer/>
             <Dashboard />
             <PerPartner />
+            <PerCompany />
           </div>} />
       
       </Routes>
