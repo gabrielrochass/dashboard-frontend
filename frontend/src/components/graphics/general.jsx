@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Bar, BarChart, Cell, Pie, PieChart, PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import "./graphics.css";
 import PerPartner from "./perPartner";
+import ShowAll from "./showAll";
 
 const GeneralDashboard = ({ stats }) => {
     const [selectedPartner, setSelectedPartner] = useState(null);
@@ -106,6 +107,10 @@ const GeneralDashboard = ({ stats }) => {
                                 <Tooltip />
                             </RadarChart>
                         </ResponsiveContainer>
+                    </div>
+
+                    <div className="chart-container">
+                        <ShowAll />
                     </div>
                 </>
             )}
