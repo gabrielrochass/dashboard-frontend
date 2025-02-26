@@ -59,54 +59,58 @@ function CreateCompany({ onCreatedLine, companyToEdit }) {
             <ul>
                 <li><a href="/">Voltar</a></li>
             </ul>
-            <div className="title">
-                <h1>{isEditing ? "Edit Company" : "Create Company"}</h1>
-            </div>
 
             <form onSubmit={handleSubmit}>
+                <div className="title">
+                    <h1>{isEditing ? "Edit Company" : "Create Company"}</h1>
+                </div>
+
                 <div className="form-group">
-                    <label>Name</label>
                     <input
                         type="text"
                         className="form-control"
+                        placeholder="Name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                     />
                 </div>
 
                 <div className="form-group">
-                    <label>CNPJ</label>
                     <input
                         type="text"
                         className="form-control"
+                        placeholder="CNPJ"
                         value={cnpj}
                         onChange={(e) => setCnpj(e.target.value)}
                     />
                 </div>
 
                 <div className="form-group">
-                    <label>Address</label>
                     <input
                         type="text"
                         className="form-control"
                         value={address}
+                        placeholder="Address"
                         onChange={(e) => setAddress(e.target.value)}
                     />
                 </div>
-                {isEditing ? (
-                    <div>
-                        <button type="submit" className="save-changes btn">
-                            Save Changes
+
+                <div className="button-group">
+                    {isEditing ? (
+                        <div>
+                            <button type="submit" className="save-changes btn">
+                                Save Changes
+                            </button>
+                            <button type="button" className="cancel btn" onClick={resetForm}>
+                                Cancel
+                            </button>
+                        </div>
+                    ) : (
+                        <button type="submit" className="create btn">
+                            Create Company
                         </button>
-                        <button type="button" className="cancel btn" onClick={resetForm}>
-                            Cancel
-                        </button>
-                    </div>
-                ) : (
-                    <button type="submit" className="create btn">
-                        Create Company
-                    </button>
-                )}
+                    )}
+                </div>
             </form>
         </div>
     );

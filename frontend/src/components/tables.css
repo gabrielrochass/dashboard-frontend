@@ -1,3 +1,10 @@
+body {
+    font-family: 'Poppins', sans-serif; 
+    background-color: #f4f4f9; 
+    margin: 0;
+    padding: 0;
+}
+
 .container {
     width: 80%;
     margin: 0 auto;
@@ -29,7 +36,7 @@ h1 {
 
 .filters input {
     flex: 1;
-    height: 35px;
+    height: 25px;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -114,4 +121,94 @@ button:active {
     transform: scale(0.9);
 }
 
+.title h1 {
+    text-align: left;
+    font-size: 30px;
+    color: #333;
+}
 
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group input {
+    height: 20px;
+}
+
+.form-control {
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: #ffffff;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    outline: none;
+    background: #eef7ff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.save-changes {
+    background-color: #28a745;
+    color: #ffffff;
+}
+
+.save-changes:hover {
+    background-color: #218838;
+}
+
+.cancel {
+    background-color: #dc3545;
+    color: #ffffff;
+    margin-left: 20px;
+}
+
+.cancel:hover {
+    background-color: #c82333;
+}
+
+.create {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.create:hover {
+    background-color: #0056b3;
+}

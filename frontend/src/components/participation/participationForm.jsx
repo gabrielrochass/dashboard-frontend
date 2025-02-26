@@ -83,53 +83,60 @@ function ParticipationForm({ onCreatedLine, participationToEdit }) {
                 <li><a href="/">Voltar</a></li>
             </ul>
 
-            <h1>Participation</h1>
 
             <form onSubmit={handleSubmit}>
-                <select value={partnerId} onChange={(e) => setPartnerId(e.target.value)}>
-                    <option value="">Select a partner</option>
-                    {partners.map((partner) => (
-                        <option key={partner.id} value={partner.id}>
-                            {partner.name}
-                        </option>
-                    ))}
-                </select>
+                <div className="title">
+                    <h1>Participation</h1>
+                </div>
+                
+                <div className="form-group">
+                    <select value={partnerId} onChange={(e) => setPartnerId(e.target.value)}>
+                        <option value="">Select a partner</option>
+                        {partners.map((partner) => (
+                            <option key={partner.id} value={partner.id}>
+                                {partner.name}
+                            </option>
+                        ))}
+                    </select>
 
-                <select value={companyId} onChange={(e) => setCompanyId(e.target.value)}>
-                    <option value="">Select a company</option>
-                    {companies.map((company) => (
-                        <option key={company.id} value={company.id}>
-                            {company.name}
-                        </option>
-                    ))}
-                </select>
+                    <select value={companyId} onChange={(e) => setCompanyId(e.target.value)}>
+                        <option value="">Select a company</option>
+                        {companies.map((company) => (
+                            <option key={company.id} value={company.id}>
+                                {company.name}
+                            </option>
+                        ))}
+                    </select>
 
-                <input
-                    type="number"
-                    placeholder="Percentage"
-                    value={percentage}
-                    onChange={(e) => setPercentage(e.target.value)}
-                    required
-                />
-
-                {isEditing ? (
-                    <div>
-                        <button type="submit" className="save-changes btn">
-                            Save Changes
+                    <input
+                        type="number"
+                        placeholder="Percentage"
+                        value={percentage}
+                        onChange={(e) => setPercentage(e.target.value)}
+                        required
+                    />
+                </div>
+                
+                <div className="button-group">
+                    {isEditing ? (
+                        <div>
+                            <button type="submit" className="save-changes btn">
+                                Save Changes
+                            </button>
+                            <button
+                                type="button"
+                                className="cancel btn"
+                                onClick={resetForm}
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    ) : (
+                        <button type="submit" className="create btn">
+                            Create Partner
                         </button>
-                        <button
-                            type="button"
-                            className="cancel btn"
-                            onClick={resetForm}
-                        >
-                            Cancel
-                        </button>
-                    </div>
-                ) : (
-                    <button type="submit" className="create btn">
-                        Create Partner
-                    </button>
-                )}  
+                    )}  
+                </div>
             </form>
         </div>
     );

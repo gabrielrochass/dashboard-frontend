@@ -60,67 +60,61 @@ function CreatePartner({ onCreatedLine, partnerToEdit }) {
                 <li><a href="/">Voltar</a></li>
             </ul>
             
-            <div className="title">
-                <h1>{isEditing ? "Edit Partner" : "Create Partner"}</h1>
-            </div>
-            <div className="row">
-                <div className="col-md-6">
-                    <form onSubmit={handleSubmit}>
-                        <div className="form-group">
-                            <label>Name</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                placeholder="Name"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                required
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label>CPF</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                placeholder="CPF"
-                                value={cpf}
-                                onChange={(e) => setCpf(e.target.value)}
-                                required
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label>Email</label>
-                            <input
-                                type="email"
-                                className="form-control"
-                                placeholder="Email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                            />
-                        </div>
 
-                        {isEditing ? (
-                            <div>
-                                <button type="submit" className="save-changes btn">
-                                    Save Changes
-                                </button>
-                                <button
-                                    type="button"
-                                    className="cancel btn"
-                                    onClick={resetForm}
-                                >
-                                    Cancel
-                                </button>
-                            </div>
-                        ) : (
-                            <button type="submit" className="create btn">
-                                Create Partner
-                            </button>
-                        )}
-                    </form>
+            <form onSubmit={handleSubmit}>
+                <div className="title">
+                    <h1>{isEditing ? "Edit Partner" : "Create Partner"}</h1>
                 </div>
-            </div>
+                
+                <div className="form-group">
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                    />
+
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="CPF"
+                        value={cpf}
+                        onChange={(e) => setCpf(e.target.value)}
+                        required
+                    />
+
+                    <input
+                        type="email"
+                        className="form-control"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </div>  
+
+                <div className="button-group">
+                    {isEditing ? (
+                        <>
+                            <button type="submit" className="save-changes btn">
+                                Save Changes
+                            </button>
+                            <button
+                                type="button"
+                                className="cancel btn"
+                                onClick={resetForm}>
+                                Cancel
+                            </button>
+                        </>
+                    ) : (
+                        <button type="submit" className="create btn">
+                            Create Partner
+                        </button>
+                    )}
+                </div>
+            </form>
         </div>
     );
 }
