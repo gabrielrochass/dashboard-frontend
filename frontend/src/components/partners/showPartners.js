@@ -1,6 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { GrPowerReset } from "react-icons/gr";
+import { MdDelete, MdEdit } from "react-icons/md";
 import { toast } from "react-toastify";
+import "../tables.css";
 import CreatePartner from "./createPartner";
 
 function ShowPartners() {
@@ -47,15 +50,15 @@ function ShowPartners() {
 
     return (
         <div className="container">
-            <CreatePartner 
-                onCreatedLine={fetchPartners} 
-                partnerToEdit={selectedPartner} 
-            />
+            <div className="create-form">
+                <CreatePartner 
+                    onCreatedLine={fetchPartners} 
+                    partnerToEdit={selectedPartner} 
+                />
+            </div>
 
-            <h1>Partners</h1>
-
+            <h2>Filters</h2>
             <div className="filters">
-                <h2>Filters</h2>
                 <input
                     type="text"
                     name="name"
@@ -77,10 +80,12 @@ function ShowPartners() {
                     value={filters.email}
                     onChange={handleFilter}
                 />
-                <button onClick={resetFilters}>Reset Filters</button>
+                <button  className="reset" onClick={resetFilters}>
+                    <GrPowerReset />
+                </button>
             </div>
 
-
+            <h1>Partners</h1>
             <table className="table">
                 {partners.length === 0 ? (
                     <tr>
@@ -102,8 +107,12 @@ function ShowPartners() {
                                 <td>{partner.cpf}</td>
                                 <td>{partner.email}</td>
                                 <td>
-                                    <button onClick={() => setSelectedPartner(partner)}>Edit</button>
-                                    <button onClick={() => handleDelete(partner.id)}>Delete</button>
+                                    <button 
+                                    className="edit"
+                                    onClick={() => setSelectedPartner(partner)}><MdEdit />
+                                    </button>
+                                    <button className="delete"  onClick={() => handleDelete(partner.id)}><MdDelete />
+                                    </button>
                                 </td>
                             </tr>
                         ))}

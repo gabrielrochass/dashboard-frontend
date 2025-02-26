@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { GrPowerReset } from "react-icons/gr";
+import { MdDelete, MdEdit } from "react-icons/md";
 import { toast } from "react-toastify";
 import ParticipationForm from "./participationForm";
 
@@ -68,34 +70,36 @@ function ParticipationTable() {
                 participationToEdit={participationToEdit} 
             />
 
-            <h1>Participations</h1>
 
+            <h2>Filters</h2>
             <div className="filters">
-                <h2>Filters</h2>
                 <input
                     type="text"
                     name="partner"
                     value={filters.partner}
                     onChange={handleFilter}
                     placeholder="Partner"
-                />
+                    />
                 <input
                     type="text"
                     name="company"
                     value={filters.company}
                     onChange={handleFilter}
                     placeholder="Company"
-                />
+                    />
                 <input
                     type="number"
                     name="percentage"
                     value={filters.percentage}
                     onChange={handleFilter}
                     placeholder="Percentage"
-                />
-                <button onClick={resetFilters}>Reset Filters</button>
+                    />
+                <button className="reset"
+                onClick={resetFilters}><GrPowerReset />
+                </button>
             </div>
 
+        <h1>Participations</h1>
         <table className="table">
             {participations.length === 0 ? (
                 <tr>
@@ -117,8 +121,14 @@ function ParticipationTable() {
                     <td>{participation.companyName}</td>
                     <td>{participation.percentage}</td>
                     <td>
-                        <button onClick={() => setParticipationToEdit(participation)}>Edit</button>
-                        <button onClick={() => handleDelete(participation.id)}>Delete</button>
+                        <button 
+                        className="edit"
+                        onClick={() => setParticipationToEdit(participation)}><MdEdit />
+                        </button>
+                        <button 
+                        className="delete"
+                        onClick={() => handleDelete(participation.id)}><MdDelete />
+                        </button>
                     </td>
                 </tr>
             ))}

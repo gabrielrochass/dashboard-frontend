@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import "../tables.css";
 
 function CreatePartner({ onCreatedLine, partnerToEdit }) {
     const [name, setName] = useState("");

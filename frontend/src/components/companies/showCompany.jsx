@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { GrPowerReset } from "react-icons/gr";
+import { MdDelete, MdEdit } from "react-icons/md";
 import { toast } from "react-toastify";
 import CreateCompany from "./createCompany";
 
@@ -52,17 +54,16 @@ function ShowCompany() {
                 companyToEdit={selectedCompany}
             />
 
-            <h1>Companies</h1>
 
+            <h2>Filters</h2>
             <div className="filters">
-                <h2>Filters</h2>
                 <input
                     type="text"
                     name="name"
                     value={filters.name}
                     onChange={handleFilter}
                     placeholder="Name"
-                />
+                    />
                 <input
                     type="text"
                     name="cnpj"
@@ -77,12 +78,14 @@ function ShowCompany() {
                     onChange={handleFilter}
                     placeholder="Address"
                 />
-                <button onClick={resetFilters}>Reset Filters</button>
+                <button className="reset"onClick={resetFilters}><GrPowerReset />
+                </button>
             </div>
 
-            <table>
+            <h1>Companies</h1>
+            <table className="table">
                {companies.length === 0 ? (
-                    <tr>
+                   <tr>
                         <td>No companies found!</td>
                     </tr>
                 ) : (
@@ -101,8 +104,13 @@ function ShowCompany() {
                         <td>{company.cnpj}</td>
                         <td>{company.address}</td>
                         <td>
-                            <button onClick={() => setSelectedCompany(company)}>Edit</button>
-                            <button onClick={() => handleDelete(company.id)}>Delete</button>
+                            <button className="edit" onClick={() => setSelectedCompany(company)}><MdEdit />
+                            </button>
+                            
+                            <button 
+                            className="delete"
+                            onClick={() => handleDelete(company.id)}><MdDelete />
+                            </button>
                         </td>
                     </tr>
                 ))}
