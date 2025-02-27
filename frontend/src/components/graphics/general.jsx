@@ -38,9 +38,6 @@ const GeneralDashboard = ({ stats }) => {
 
                 {selectedPartner ? (
                     <div>
-                        <button className="back-button" onClick={() => setSelectedPartner(null)}>
-                            ← Voltar ao Dashboard Geral
-                        </button>
                         <PerPartner onSelectPartner={setSelectedPartner} />
                     </div>
                 ) : (
