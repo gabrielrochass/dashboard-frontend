@@ -77,11 +77,6 @@ function ParticipationForm({ onCreatedLine, participationToEdit }) {
 
     return (
         <div className="container">
-            <ul>
-                <li><a href="/">Voltar</a></li>
-            </ul>
-
-
             <form onSubmit={handleSubmit}>
                 <div className="title">
                     <h1>Participation</h1>

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { GrPowerReset } from "react-icons/gr";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { toast } from "react-toastify";
+import Navbar from "../navbar/navbar";
 import CreateCompany from "./createCompany";
 
 function ShowCompany() {
@@ -49,6 +50,7 @@ function ShowCompany() {
 
     return (
         <div className="container">
+            <Navbar />
             <CreateCompany 
                 onCreatedLine={fetchCompanies}
                 companyToEdit={selectedCompany}

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { GrPowerReset } from "react-icons/gr";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { toast } from "react-toastify";
+import Navbar from "../navbar/navbar";
 import ParticipationForm from "./participationForm";
 
 function ParticipationTable() {
@@ -65,6 +66,7 @@ function ParticipationTable() {
 
     return ( 
         <div className="container">
+            <Navbar />
             <ParticipationForm 
                 onCreatedLine={fetchParticipations} 
                 participationToEdit={participationToEdit} 

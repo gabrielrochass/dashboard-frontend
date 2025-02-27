@@ -30,10 +30,6 @@ const Dashboard = () => {
 
     return (
         <div>
-            <ul>
-                <li><a href="/">Voltar</a></li>
-            </ul>
-            
             {stats ? <GeneralDashboard stats={stats} /> : <p>No data available.</p>}
         </div>
     );

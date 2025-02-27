@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { GrPowerReset } from "react-icons/gr";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { toast } from "react-toastify";
+import Navbar from "../navbar/navbar";
 import "../tables.css";
 import CreatePartner from "./createPartner";
 
@@ -50,6 +51,7 @@ function ShowPartners() {
 
     return (
         <div className="container">
+            <Navbar />
             <div className="create-form">
                 <CreatePartner 
                     onCreatedLine={fetchPartners} 

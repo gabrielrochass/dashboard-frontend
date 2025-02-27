@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Bar, BarChart, Cell, Pie, PieChart, PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import Navbar from "../navbar/navbar";
 import "./graphics.css";
 import PerPartner from "./perPartner";
 import ShowAll from "./showAll";
@@ -28,6 +29,7 @@ const GeneralDashboard = ({ stats }) => {
 
     return (
         <div className="dashboard">
+            <Navbar />
             <div className="header">
                 <h1>General Dashboard</h1>
             </div>
