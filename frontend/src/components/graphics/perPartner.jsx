@@ -76,8 +76,8 @@ function PerPartner() {
             </div>
             <div className="dashboard-charts">
                 {data && (
-                    <div className="chart-container">
-                        <div className="highlight-container">
+                    <div className="chart-container2">
+                        <div className="highlight-container"id="2">
                             <h3>Most Company Participation
                                 <div className="highlight-company">
                                     <span>{data.mostParticipation}</span>
@@ -91,7 +91,7 @@ function PerPartner() {
                         </div>
                         
                         <div className="bar">
-                            <ResponsiveContainer width="100%" height={300}>
+                            <ResponsiveContainer width="100%" height={250}>
                                 <BarChart data={Object.keys(groupedByCompany).map(company => ({ name: company, value: groupedByCompany[company].reduce((sum, p) => sum + p.value, 0) }))} margin={{ top: 20, right: 20, left: 0, bottom: 5 }}>
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <XAxis dataKey="name" />

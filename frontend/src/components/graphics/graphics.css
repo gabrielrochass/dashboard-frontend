@@ -83,7 +83,6 @@
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     gap: 20px;
     padding: 20px;
-    /* background-color: #f4f4f9; */
     margin: 0 auto;
     max-width: 1200px;
 }
@@ -151,7 +150,7 @@
     border-radius: 8px;
     transition: height 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    /* grid-row: 2 stat; */
+    background-color: #ffffff;
 }
 
 .bar:hover {
@@ -211,4 +210,11 @@
     grid-template-columns: repeat(3, minmax(250px, 1fr));
     gap: 120px;
     grid-row: 2;
+}
+
+.chart-container2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    justify-content: center;
 }
