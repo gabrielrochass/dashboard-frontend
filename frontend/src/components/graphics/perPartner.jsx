@@ -16,7 +16,7 @@ function PerPartner() {
 
     const fetchPartners = async () => {
         try {
-            const response = await axios.get("http://127.0.0.1:8000/partners/");
+            const response = await axios.get("https://dashboard-backend-ngl8.onrender.com/partners/");
             setPartners(response.data);
         } catch (error) {
             toast.error("Failed to fetch partners!");
@@ -25,7 +25,7 @@ function PerPartner() {
 
     const fetchParticipations = async () => {
         try {
-            const response = await axios.get("http://127.0.0.1:8000/participations/");
+            const response = await axios.get("https://dashboard-backend-ngl8.onrender.com/participations/");
             setParticipations(response.data);
         } catch (error) {
             toast.error("Failed to fetch participations!");
@@ -34,7 +34,7 @@ function PerPartner() {
 
     const fetchPartnerData = async (partnerId) => {
         try {
-            const response = await axios.get(`http://127.0.0.1:8000/partner-stats/${partnerId}/`);
+            const response = await axios.get(`https://dashboard-backend-ngl8.onrender.com/partner-stats/${partnerId}/`);
             setData(response.data);
         } catch (error) {
             toast.error("Failed to fetch partner data!");

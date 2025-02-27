@@ -31,14 +31,14 @@ function CreatePartner({ onCreatedLine, partnerToEdit }) {
         e.preventDefault();
         try {
             if (isEditing && partnerToEdit?.id) {
-                await axios.put(`http://127.0.0.1:8000/partners/${partnerToEdit.id}/`, {
+                await axios.put(`https://dashboard-backend-ngl8.onrender.com/partners/${partnerToEdit.id}/`, {
                     name,
                     cpf,
                     email,
                 });
                 toast.success("Partner edited successfully!");
             } else {
-                await axios.post("http://127.0.0.1:8000/partners/", {
+                await axios.post("https://dashboard-backend-ngl8.onrender.com/partners/", {
                     name,
                     cpf,
                     email,

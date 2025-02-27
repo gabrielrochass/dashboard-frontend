@@ -18,7 +18,7 @@ function ShowPartners() {
 
     const fetchPartners = async () => {
         try {
-            const response = await axios.get("http://127.0.0.1:8000/partners/", {
+            const response = await axios.get("https://dashboard-backend-ngl8.onrender.com/partners/", {
                 params: filters,
             });
             setPartners(response.data);
@@ -29,7 +29,7 @@ function ShowPartners() {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://127.0.0.1:8000/partners/${id}/`);
+            await axios.delete(`https://dashboard-backend-ngl8.onrender.com/partners/${id}/`);
             toast.success("Partner deleted successfully!");
             fetchPartners(); 
         } catch (error) {

@@ -16,7 +16,7 @@ function PerCompany() {
 
     const fetchCompanies = async () => {
         try {
-            const response = await axios.get("http://127.0.0.1:8000/companies/");
+            const response = await axios.get("https://dashboard-backend-ngl8.onrender.com/companies/");
             setCompany(response.data);
         } catch (error) {
             toast.error("Failed to fetch companies!");
@@ -25,7 +25,7 @@ function PerCompany() {
 
     const fetchParticipations = async () => {
         try {
-            const response = await axios.get("http://127.0.0.1:8000/participations/");
+            const response = await axios.get("https://dashboard-backend-ngl8.onrender.com/participations/");
             setParticipations(response.data);
         } catch (error) {
             toast.error("Failed to fetch participations!");
@@ -34,7 +34,7 @@ function PerCompany() {
 
     const fetchCompanyData = async (companyId) => {
         try {
-            const response = await axios.get(`http://127.0.0.1:8000/company-stats/${companyId}/`);
+            const response = await axios.get(`https://dashboard-backend-ngl8.onrender.com/company-stats/${companyId}/`);
             setData(response.data);
         } catch (error) {
             toast.error("Failed to fetch company data!");

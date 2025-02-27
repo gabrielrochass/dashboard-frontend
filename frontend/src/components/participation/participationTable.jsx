@@ -14,8 +14,8 @@ function ParticipationTable() {
     
     const fetchPartnersAndCompanies = async () => {
         try {
-            const partnersResponse = await axios.get("http://127.0.0.1:8000/partners/");
-            const companiesResponse = await axios.get("http://127.0.0.1:8000/companies/");
+            const partnersResponse = await axios.get("https://dashboard-backend-ngl8.onrender.com/partners/");
+            const companiesResponse = await axios.get("https://dashboard-backend-ngl8.onrender.com/companies/");
             setPartners(partnersResponse.data);
             setCompanies(companiesResponse.data);
         } catch (error) {
@@ -28,7 +28,7 @@ function ParticipationTable() {
     const fetchParticipations = async () => {
         try {
             await fetchPartnersAndCompanies();
-            const response = await axios.get("http://127.0.0.1:8000/participations/", {
+            const response = await axios.get("https://dashboard-backend-ngl8.onrender.com/participations/", {
                 params: filters,
             });
             setParticipations(response.data);
@@ -39,7 +39,7 @@ function ParticipationTable() {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://127.0.0.1:8000/participations/${id}/`);
+            await axios.delete(`https://dashboard-backend-ngl8.onrender.com/participations/${id}/`);
             toast.success("Participation deleted successfully!");
             fetchParticipations();
         } catch (error) {
