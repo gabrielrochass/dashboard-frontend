@@ -16,6 +16,11 @@
 
 .sidebar.show {
     transform: translateX(0);
+    backdrop-filter: blur(2px);
+    height: auto;
+    width: 250px;
+    border-radius: 10px;
+    margin-right: 0;
 }
 
 .menu-toggle-button {
