@@ -3,9 +3,8 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Bar, BarChart, CartesianGrid, Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
-function PerPartner() {
+function PerPartner({ selectedPartner, setSelectedPartner }) {
     const [partners, setPartners] = useState([]);
-    const [selectedPartner, setSelectedPartner] = useState("");
     const [data, setData] = useState(null);
     const [participations, setParticipations] = useState([]);
 

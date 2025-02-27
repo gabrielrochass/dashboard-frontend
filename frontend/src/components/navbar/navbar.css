@@ -34,8 +34,8 @@
     font-size: 24px;
     z-index: 1000;
     border-radius: 5px;
-    background-color: #007BFF;
-    color: white;
+    background-color: transparent;
+    color: black;
 }
 
 .sidebar-menu ul {
