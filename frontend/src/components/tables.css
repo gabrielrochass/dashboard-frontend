@@ -1,0 +1,233 @@
+body {
+    font-family: 'Poppins', sans-serif; 
+    background-color: #f4f4f9; 
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px;
+    padding: 15px;
+}
+
+.filters h2 {
+    text-align: left;
+    margin-bottom: 0;
+    font-size: 18px;
+    color: #444;
+}
+
+.filters input {
+    flex: 1;
+    height: 25px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: #ffffff;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.filters input:focus {
+    border-color: #007bff;
+    outline: none;
+    background: #eef7ff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table th, .table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.table th {
+    background-color: #007bff;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table tr:hover {
+    background-color: #eef7ff;
+}
+
+.filters button.reset,
+button.edit,
+button.delete {
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 22px;
+    transition: transform 0.3s ease, color 0.3s ease;
+    border-radius: 6px;
+}
+
+.filters button.reset {
+    color: black;
+}
+
+.filters button.reset:hover {
+    color: #007bff;
+}
+
+button.edit {
+    color: black;
+}
+
+button.edit:hover {
+    color: #007bff;
+}
+
+button.delete {
+    color: black;
+}
+
+button.delete:hover {
+    color: red;
+}
+
+button:active {
+    transform: scale(0.9);
+}
+
+.title h1 {
+    text-align: left;
+    font-size: 30px;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group input {
+    height: 20px;
+}
+
+.form-control {
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: #ffffff;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    outline: none;
+    background: #eef7ff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.save-changes {
+    background-color: #28a745;
+    color: #ffffff;
+}
+
+.save-changes:hover {
+    background-color: #218838;
+}
+
+.cancel {
+    background-color: #dc3545;
+    color: #ffffff;
+    margin-left: 20px;
+}
+
+.cancel:hover {
+    background-color: #c82333;
+}
+
+.create {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.create:hover {
+    background-color: #0056b3;
+}
+
+
+select {
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: #ffffff;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+select:focus {
+    border-color: #007bff;
+    outline: none;
+    background: #eef7ff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
