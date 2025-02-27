@@ -88,6 +88,7 @@ function PerPartner() {
                         </div>
                         
                         <div className="bar">
+                            <h4> Company Participation</h4>
                             <ResponsiveContainer width="100%" height={250}>
                                 <BarChart data={Object.keys(groupedByCompany).map(company => ({ name: company, value: groupedByCompany[company].reduce((sum, p) => sum + p.value, 0) }))} margin={{ top: 20, right: 20, left: 0, bottom: 5 }}>
                                     <CartesianGrid strokeDasharray="3 3" />
@@ -112,7 +113,7 @@ function PerPartner() {
 
                                 return (
                                     <div key={index} className="company-participation-container">
-                                        <h4>{company}</h4>
+                                        <h4>Participations in {company}</h4>
                                         <ResponsiveContainer width={300} height={240}>
                                             <PieChart>
                                                 <Pie

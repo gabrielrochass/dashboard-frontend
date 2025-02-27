@@ -87,6 +87,7 @@ function PerCompany() {
                     </div>
 
                     <div className="pie2">
+                        <h4> Partners Participations in {data.company}</h4>
                         <ResponsiveContainer width={400} height={300}>
                             <PieChart>
                                 <Pie
