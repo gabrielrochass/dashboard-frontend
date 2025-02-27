@@ -43,7 +43,6 @@ function ShowAll() {
 
     return (
         <div className="dashboard-all">
-            <h2 className="dashboard-title">Participation per Company</h2>
             {Object.keys(groupedByCompany).map((company, index) => {
                 const totalParticipation = groupedByCompany[company].reduce((sum, p) => sum + p.value, 0);
                 const remaining = totalParticipation < 100 ? 100 - totalParticipation : 0;
@@ -56,7 +55,7 @@ function ShowAll() {
                 return (
                     <div key={index} className="chart-section">
                         <h4 className="chart-subtitle">{company}</h4>
-                        <ResponsiveContainer width="100%" height={400}>
+                        <ResponsiveContainer width={250} height={250}>
                             <PieChart>
                                 <Pie
                                     data={data}
@@ -64,8 +63,8 @@ function ShowAll() {
                                     nameKey="name"
                                     cx="50%"
                                     cy="50%"
-                                    outerRadius={120}
-                                    label={(entry) => `${entry.name}: ${entry.value.toFixed(2)}%`}
+                                    outerRadius={50}
+                                    label={(entry) => `${entry.value.toFixed(2)}%`}
                                 >
                                     {data.map((entry, idx) => (
                                         <Cell 

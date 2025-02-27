@@ -78,23 +78,6 @@
     margin-bottom: 20px;
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-    .dashboard-charts {
-        grid-template-columns: 1fr;
-        padding: 15px;
-    }
-
-    .highlight-container, 
-    .chart-container {
-        padding: 20px;
-    }
-
-    .header h1 {
-        font-size: 28px;
-    }
-}
-
 /* Área geral de gráficos */
 .chart-container-all {
     display: grid;
@@ -106,23 +89,16 @@
     max-width: 1200px;
 }
 
-@media (max-width: 600px) {
-    .chart-container-all {
-        grid-template-columns: 1fr;
-    }
-}
-
 .dashboard-all {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px 70px; /* First value is for row gap, second is for column gap */
+    padding: 10px;
     background-color: #f4f4f9;
     border-radius: 12px;
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
-    margin: 20px auto;
-    max-width: 1000px;
+    max-width: 1200px;
 }
+
 
 .dashboard-title {
     font-size: 28px;
@@ -135,7 +111,6 @@
     letter-spacing: 1.2px;
     margin-bottom: 20px;
 }
-
 .chart-section {
     background: #ffffff;
     padding: 20px;
@@ -160,29 +135,11 @@
     margin-bottom: 15px;
 }
 
-@media (max-width: 768px) {
-    .dashboard-all {
-        padding: 10px;
-    }
-    
-    .chart-section {
-        padding: 15px;
-    }
+.chart-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    justify-content: center;
 }
 
-.charts-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem; /* Espaçamento entre os gráficos */
-    justify-content: space-between; /* Mantém alinhado e espaçado */
-}
-
-.chart-card {
-    flex: 1;
-    min-width: 300px; /* Evita que os cards fiquem muito pequenos */
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
-}
 
