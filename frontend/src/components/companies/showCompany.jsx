@@ -17,7 +17,7 @@ function ShowCompany() {
 
     const fetchCompanies = async () => {
         try {
-            const response = await axios.get("http://127.0.0.1:8000/companies/", {
+            const response = await axios.get("https://dashboard-backend-ngl8.onrender.com/companies/", {
                 params: filters,
             });
             setCompanies(response.data);
@@ -28,7 +28,7 @@ function ShowCompany() {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://127.0.0.1:8000/companies/${id}/`);
+            await axios.delete(`https://dashboard-backend-ngl8.onrender.com/companies/${id}/`);
             toast.success("Company deleted successfully!");
             fetchCompanies();
         } catch (error) {    

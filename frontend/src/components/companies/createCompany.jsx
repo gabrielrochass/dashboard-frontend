@@ -31,14 +31,14 @@ function CreateCompany({ onCreatedLine, companyToEdit }) {
         e.preventDefault();
         try {
             if (isEditing && companyToEdit?.id) {
-                await axios.put(`http://127.0.0.1:8000/companies/${companyToEdit.id}/`, {
+                await axios.put(`https://dashboard-backend-ngl8.onrender.com/companies/${companyToEdit.id}/`, {
                     name,
                     cnpj,
                     address,
                 });
                 toast.success("Company edited successfully!");
             } else {
-                await axios.post("http://127.0.0.1:8000/companies/", {
+                await axios.post("https://dashboard-backend-ngl8.onrender.com/companies/", {
                     name,
                     cnpj,
                     address,

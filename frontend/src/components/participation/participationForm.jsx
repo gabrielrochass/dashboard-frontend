@@ -53,14 +53,14 @@ function ParticipationForm({ onCreatedLine, participationToEdit }) {
         e.preventDefault();
         try {
             if (isEditing && participationToEdit?.id) {
-                await axios.put(`http://127.0.0.1:8000/participations/${participationToEdit.id}/`, {
+                await axios.put(`https://dashboard-backend-ngl8.onrender.com/participations/${participationToEdit.id}/`, {
                     partner: partnerId,
                     company: companyId,
                     percentage: percentage,
                 });
                 toast.success("Participation edited successfully!");
             } else {
-                await axios.post("http://127.0.0.1:8000/participations/", {
+                await axios.post("https://dashboard-backend-ngl8.onrender.com/participations/", {
                     partner: partnerId,
                     company: companyId,
                     percentage: percentage,
