@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
+import { Bar, BarChart, Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 function PerCompany() {
     const [company, setCompany] = useState([]);
@@ -93,7 +93,7 @@ function PerCompany() {
                                 fill="#8884d8"
                                 label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(2)}%`}
                             >
-                                {Object.keys(groupedByPartner).map((partner, index) => (
+                                {Object.keys(groupedByPartner).map((_, index) => (
                                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                 ))}
                                 <Cell key="cell-unsigned" fill="gray" />
@@ -102,11 +102,46 @@ function PerCompany() {
                             <Legend />
                         </PieChart>
                     </ResponsiveContainer>
-                </div>
-            )}
-        </div>
-    );
-};
 
+                    <div className="highlight-container">
+                        <h3> Total Partners: 
+                        <div className="highlight-company">
+                            <span>{data.totalPartners}</span>
+                        </div>
+                        </h3>
+                        <h3> Average Participation:
+                        <div className="highlight-company">
+                            <span>{data.avgParticipation.toFixed(2)}%</span>
+                        </div>
+                        </h3>
+                    </div>
+
+                    <div className="mb-6">
+                        <h3 className="text-lg font-semibold">Top Partners</h3>
+                        <ResponsiveContainer width="100%" height={250}>
+                            <BarChart
+                                data={data.topPartners || []}
+                                layout="vertical"
+                                margin={{ left: 50 }}
+                            >
+                                <XAxis type="number" />
+                                <YAxis type="category" dataKey="partner" width={150} />
+                                <Tooltip />
+                                <Legend />
+                                <Bar dataKey="percentage" fill={COLORS[0]}>
+                                    {data.topPartners?.map((_, index) => (
+                                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                    ))}
+                                </Bar>
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </div>
+
+                </div>
+        )}
+    </div>
+    );
+}
 export default PerCompany;
+
 
