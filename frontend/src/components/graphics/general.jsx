@@ -28,10 +28,11 @@ const GeneralDashboard = ({ stats }) => {
 
     return (
         <div className="dashboard">
+            <div className="header">
+                <h1>General Dashboard</h1>
+            </div>
+
             <div className="dashboard-charts">
-                <div className="header">
-                    <h1>General Dashboard</h1>
-                </div>
 
                 {selectedPartner ? (
                     <div>
@@ -51,6 +52,12 @@ const GeneralDashboard = ({ stats }) => {
                             <h3>Partner with Most Companies:
                                 <div className="highlight-company">
                                     <span>{stats.partnerMostCompanies}</span>
+                                </div>
+                            </h3>
+                            <h3>
+                                Average Partners per Company: 
+                                <div className="highlight-company">
+                                    <span>{stats.avgParnersPerCompany}</span>
                                 </div>
                             </h3>
                         </div>
@@ -82,18 +89,6 @@ const GeneralDashboard = ({ stats }) => {
                                     </Pie>
                                     <Tooltip />
                                 </PieChart>
-                            </ResponsiveContainer>
-                        </div>
-
-                        <div className="chart-container">
-                            <h3>Average Partners per Company</h3>
-                            <ResponsiveContainer width="100%" height={250}>
-                                <BarChart data={[{ name: "Avg Partners per Company", value: stats.avgParnersPerCompany }]}>
-                                    <XAxis dataKey="name" />
-                                    <YAxis />
-                                    <Tooltip />
-                                    <Bar dataKey="value" fill={COLORS[0]} />
-                                </BarChart>
                             </ResponsiveContainer>
                         </div>
 
