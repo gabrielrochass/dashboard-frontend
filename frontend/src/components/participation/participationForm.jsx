@@ -26,7 +26,7 @@ function ParticipationForm({ onCreatedLine, participationToEdit }) {
 
     const fetchPartners = async () => {
         try {
-            const response = await axios.get("http://127.0.0.1:8000/partners/");
+            const response = await axios.get("https://dashboard-backend-ngl8.onrender.com/partners/");
             setPartners(response.data);
         } catch (error) {
             toast.error("Failed to fetch partners!");
@@ -35,7 +35,7 @@ function ParticipationForm({ onCreatedLine, participationToEdit }) {
 
     const fetchCompanies = async () => {
         try {
-            const response = await axios.get("http://127.0.0.1:8000/companies/");
+            const response = await axios.get("https://dashboard-backend-ngl8.onrender.com/companies/");
             setCompanies(response.data);
         } catch (error) {
             toast.error("Failed to fetch companies!");
