@@ -8,6 +8,7 @@ import ParticipationTable from "./components/participation/participationTable";
 import ShowPartners from "./components/partners/showPartners";
 import "./index.css";
 import Dashboard from "./pages/dashboard.js";
+import Home from "./pages/home.jsx";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Route path="/" element={
           <div>
             <Navbar />
+            <Home />
           </div>} />
         
         <Route path="/partners" element={
