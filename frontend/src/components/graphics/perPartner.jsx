@@ -55,9 +55,6 @@ function PerPartner() {
 
     return (
         <div className="dashboard">
-            <div className="header">
-                <h2>Per Partner</h2>
-            </div>
             <div className="select-container">
                 <select
                     onChange={(e) => {
@@ -78,12 +75,12 @@ function PerPartner() {
                 {data && (
                     <div className="chart-container2">
                         <div className="highlight-container"id="2">
-                            <h3>Most Company Participation
+                            <h3>Most Company Participation:
                                 <div className="highlight-company">
                                     <span>{data.mostParticipation}</span>
                                 </div>
                             </h3>
-                            <h3>Least Company Participation
+                            <h3>Least Company Participation:
                                 <div className="highlight-company">
                                     <span>{data.leastParticipation}</span>
                                 </div>

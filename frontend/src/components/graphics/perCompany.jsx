@@ -55,55 +55,25 @@ function PerCompany() {
 
     return (
         <div className="per-company-container">
-            <h2 className="per-company-title">Per Company</h2>
-            <select
-                onChange={(e) => {
-                    setSelectedCompany(e.target.value);
-                    fetchCompanyData(e.target.value);
-                }}
-            >
-                <option value="">Select a company</option>
-                {company.map((c) => (
-                    <option key={c.id} value={c.id}>
-                        {c.name}
-                    </option>
-                ))}
-            </select>
+            <div className="select-container">
+                <select
+                    onChange={(e) => {
+                        setSelectedCompany(e.target.value);
+                        fetchCompanyData(e.target.value);
+                    }}
+                    className="partner-select"
+                >
+                    <option value="">Select a company</option>
+                    {company.map((c) => (
+                        <option key={c.id} value={c.id}>
+                            {c.name}
+                        </option>
+                    ))}
+                </select>
+            </div>
             {data && (
-                <div className="chart-section">
-                    <h4 className="chart-subtitle">{data.company}</h4>
-                    <ResponsiveContainer width="100%" height={400}>
-                        <PieChart>
-                            <Pie
-                                data={Object.keys(groupedByPartner).map((partner) => {
-                                    const totalParticipation = groupedByPartner[partner].reduce((sum, p) => sum + p.value, 0);
-                                    return {
-                                        name: partner,
-                                        value: totalParticipation,
-                                    };
-                                }).concat({
-                                    name: "unsigned",
-                                    value: 100 - Object.keys(groupedByPartner).reduce((sum, partner) => sum + groupedByPartner[partner].reduce((sum, p) => sum + p.value, 0), 0)
-                                })}
-                                dataKey="value"
-                                nameKey="name"
-                                cx="50%"
-                                cy="50%"
-                                outerRadius={150}
-                                fill="#8884d8"
-                                label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(2)}%`}
-                            >
-                                {Object.keys(groupedByPartner).map((_, index) => (
-                                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                                ))}
-                                <Cell key="cell-unsigned" fill="gray" />
-                            </Pie>
-                            <Tooltip />
-                            <Legend />
-                        </PieChart>
-                    </ResponsiveContainer>
-
-                    <div className="highlight-container">
+                <div className="chart-section3">
+                    <div className="highlight-container" id="meu-elemento">
                         <h3> Total Partners: 
                         <div className="highlight-company">
                             <span>{data.totalPartners}</span>
@@ -116,13 +86,46 @@ function PerCompany() {
                         </h3>
                     </div>
 
+                    <div className="pie2">
+                        <ResponsiveContainer width={400} height={300}>
+                            <PieChart>
+                                <Pie
+                                    data={Object.keys(groupedByPartner).map((partner) => {
+                                        const totalParticipation = groupedByPartner[partner].reduce((sum, p) => sum + p.value, 0);
+                                        return {
+                                            name: partner,
+                                            value: totalParticipation,
+                                        };
+                                    }).concat({
+                                        name: "unsigned",
+                                        value: 100 - Object.keys(groupedByPartner).reduce((sum, partner) => sum + groupedByPartner[partner].reduce((sum, p) => sum + p.value, 0), 0)
+                                    })}
+                                    dataKey="value"
+                                    nameKey="name"
+                                    cx="50%"
+                                    cy="50%"
+                                    outerRadius={80}
+                                    fill="#8884d8"
+                                    label={({ name, percent }) => `${(percent * 100).toFixed(2)}%`}
+                                >
+                                    {Object.keys(groupedByPartner).map((_, index) => (
+                                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                    ))}
+                                    <Cell key="cell-unsigned" fill="gray" />
+                                </Pie>
+                                <Tooltip />
+                                <Legend />
+                            </PieChart>
+                        </ResponsiveContainer>
+                    </div>
+
                     <div className="mb-6">
                         <h3 className="text-lg font-semibold">Top Partners</h3>
                         <ResponsiveContainer width="100%" height={250}>
                             <BarChart
                                 data={data.topPartners || []}
                                 layout="vertical"
-                                margin={{ left: 50 }}
+                                margin={{ left: 0, right: 20 }}
                             >
                                 <XAxis type="number" />
                                 <YAxis type="category" dataKey="partner" width={150} />
