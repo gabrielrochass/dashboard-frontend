@@ -33,8 +33,15 @@ function ShowAll() {
 
     const COLORS = ["#4E79A7", "#F28E2B", "#E15759", "#76B7B2", "#59A14F", "#EDC948", "#B07AA1"];
 
+    // agrupa as participações por empresa
+    // reduce transforma um array em um único valor
+    // acc é o acumulador, p é o elemento atual
+    //     "Empresa A": [
+    //     { name: "João", value: 30.5 },
+    //     { name: "Maria", value: 20.2 }
+    //   ], 
     const groupedByCompany = participations.reduce((acc, p) => {
-        if (!acc[p.companyName]) {
+        if (!acc[p.companyName]) { // se não existe, cria um array vazio
             acc[p.companyName] = [];
         }
         acc[p.companyName].push({ name: p.partnerName, value: parseFloat(p.percentage) });
@@ -43,14 +50,18 @@ function ShowAll() {
 
     return (
         <div className="dashboard-all">
-            {Object.keys(groupedByCompany).map((company, index) => {
+            {Object.keys(groupedByCompany).map((company, index) => { // percorre o objeto e cria um array de dados pra cada empresa
+
+                // calcula a participação total das empresas -> soma todos os valores de participação
                 const totalParticipation = groupedByCompany[company].reduce((sum, p) => sum + p.value, 0);
+                
+                // calcula o restante da participação -> não associo a ninguém
                 const remaining = totalParticipation < 100 ? 100 - totalParticipation : 0;
 
                 const data = [
                     ...groupedByCompany[company],
                     remaining > 0 ? { name: "Unsigned", value: remaining } : null
-                ].filter(Boolean);
+                ].filter(Boolean); // remove os valores null
 
                 return (
                     <div key={index} className="chart-section">
@@ -74,7 +85,7 @@ function ShowAll() {
                                     ))}
                                 </Pie>
                                 <Tooltip />
-                                <Legend />
+                                <Legend /> {/* mostra a legenda  */}
                             </PieChart>
                         </ResponsiveContainer>
                     </div>

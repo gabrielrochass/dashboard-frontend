@@ -72,7 +72,7 @@ function PerPartner() {
                 </select>
             </div>
             <div className="dashboard-charts">
-                {data && (
+                {data && ( // se data existir, renderiza os gráficos
                     <div className="chart-container2">
                         <div className="highlight-container"id="2">
                             <h3>Most Company Participation:
@@ -90,7 +90,17 @@ function PerPartner() {
                         <div className="bar">
                             <h4> Company Participation</h4>
                             <ResponsiveContainer width="100%" height={250}>
-                                <BarChart data={Object.keys(groupedByCompany).map(company => ({ name: company, value: groupedByCompany[company].reduce((sum, p) => sum + p.value, 0) }))} margin={{ top: 20, right: 20, left: 0, bottom: 5 }}>
+                                <BarChart 
+                                data={Object.keys(groupedByCompany).map(company => ({ 
+                                        name: company, 
+                                        value: groupedByCompany[company].reduce((sum, p) => sum + p.value, 0) 
+                                    }))} 
+                                    margin={{ 
+                                        top: 20, 
+                                        right: 20, 
+                                        left: 0, 
+                                        bottom: 5 
+                                    }}>
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <XAxis dataKey="name" />
                                     <YAxis />

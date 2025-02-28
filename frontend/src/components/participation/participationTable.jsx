@@ -11,9 +11,11 @@ function ParticipationTable() {
     const [participationToEdit, setParticipationToEdit] = useState(null);
     const [partners, setPartners] = useState([]);
     const [companies, setCompanies] = useState([]);
+    const [filters, setFilters] = useState({ partner: "", company: "", percentage: "" });
     
-    const fetchPartnersAndCompanies = async () => {
+    const fetchPartnersAndCompanies = async () => { // async porque faz requisição
         try {
+            // await para esperar a resposta da requisição
             const partnersResponse = await axios.get("https://dashboard-backend-ngl8.onrender.com/partners/");
             const companiesResponse = await axios.get("https://dashboard-backend-ngl8.onrender.com/companies/");
             setPartners(partnersResponse.data);
@@ -22,8 +24,6 @@ function ParticipationTable() {
             toast.error("Failed to fetch partners and companies!");
         }
     };
-
-    const [filters, setFilters] = useState({ partner: "", company: "", percentage: "" });
 
     const fetchParticipations = async () => {
         try {

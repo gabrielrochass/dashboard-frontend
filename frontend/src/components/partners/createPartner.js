@@ -4,10 +4,12 @@ import { toast } from "react-toastify";
 import "../tables.css";
 
 function CreatePartner({ onCreatedLine, partnerToEdit }) {
+    // seta valores iniciais para o forms
     const [name, setName] = useState("");
     const [cpf, setCpf] = useState("");
     const [email, setEmail] = useState("");
     const [isEditing, setIsEditing] = useState(false);
+
 
     useEffect(() => {
         if (partnerToEdit) {
@@ -18,7 +20,7 @@ function CreatePartner({ onCreatedLine, partnerToEdit }) {
         } else {
             resetForm();
         }
-    }, [partnerToEdit]);
+    }, [partnerToEdit]); // muda sempre que o partnerToEdit mudar
 
     const resetForm = () => {
         setName("");
@@ -28,9 +30,10 @@ function CreatePartner({ onCreatedLine, partnerToEdit }) {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault(); // previne de recarregar a página ao submeter o form (default)
         try {
-            if (isEditing && partnerToEdit?.id) {
+            // se estiver editando, faz um put, se não, faz um post
+            if (isEditing && partnerToEdit?.id) { // se partnerToEdit existir 
                 await axios.put(`https://dashboard-backend-ngl8.onrender.com/partners/${partnerToEdit.id}/`, {
                     name,
                     cpf,
@@ -47,7 +50,7 @@ function CreatePartner({ onCreatedLine, partnerToEdit }) {
             }
             
             resetForm();
-            onCreatedLine(); 
+            onCreatedLine(); // atualiza a tabela
         } catch (error) {
             toast.error(`Failed to ${isEditing ? "edit" : "create"} partner!`);
             toast.error(error.response);
@@ -67,7 +70,7 @@ function CreatePartner({ onCreatedLine, partnerToEdit }) {
                         className="form-control"
                         placeholder="Name"
                         value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        onChange={(e) => setName(e.target.value)} // e é o evento, e.target é o input, e.target.value é o valor do input
                         required
                     />
 

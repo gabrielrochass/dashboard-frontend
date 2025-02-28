@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import GeneralDashboard from "../components/graphics/general.jsx";
+import PerCompany from "../components/graphics/perCompany.jsx";
+import PerPartner from "../components/graphics/perPartner.jsx";
 
 const Dashboard = () => {
-    const [stats, setStats] = useState(null);
+    const [stats, setStats] = useState(null); 
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -26,11 +28,13 @@ const Dashboard = () => {
         };
 
         fetchData();
-    }, []);
+    }, []); // executa só uma vez -> ao carregar a página
 
     return (
         <div>
             {stats ? <GeneralDashboard stats={stats} /> : <p>No data available.</p>}
+            <PerPartner />
+            <PerCompany />
         </div>
     );
 };

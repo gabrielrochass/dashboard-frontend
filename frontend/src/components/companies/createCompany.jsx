@@ -8,6 +8,7 @@ function CreateCompany({ onCreatedLine, companyToEdit }) {
     const [address, setAddress] = useState("");
     const [isEditing, setIsEditing] = useState(false);
 
+    // quando edita, sobe os valores do partnerToEdit para o form
     useEffect(() => {
         if (companyToEdit) {
             setName(companyToEdit.name || "");

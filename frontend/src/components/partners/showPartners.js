@@ -12,6 +12,7 @@ function ShowPartners() {
     const [selectedPartner, setSelectedPartner] = useState(null);
     const [filters, setFilters] = useState({ name : "", cpf : "", email : "" });
 
+    // atualiza a tabela sempre que o filtro mudar
     useEffect(() => {
         fetchPartners();
     }, [filters]);
@@ -19,7 +20,7 @@ function ShowPartners() {
     const fetchPartners = async () => {
         try {
             const response = await axios.get("https://dashboard-backend-ngl8.onrender.com/partners/", {
-                params: filters,
+                params: filters, // passa os filtros para a url. ex: /partners/?name=joao&cpf=123
             });
             setPartners(response.data);
         } catch (error) {
@@ -39,8 +40,8 @@ function ShowPartners() {
 
     const handleFilter = (e) => {
         setFilters({
-            ...filters,
-            [e.target.name]: e.target.value,
+            ...filters, // mantém os valores antigos dos outros filtros enquanto muda um
+            [e.target.name]: e.target.value, // pega o nome do input = valor na tabela
         });
     };
 

@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 function ParticipationForm({ onCreatedLine, participationToEdit }) {
     const [partners, setPartners] = useState([]);
     const [companies, setCompanies] = useState([]);
-    const [partnerId, setPartnerId] = useState("");
+    const [partnerId, setPartnerId] = useState(""); 
     const [companyId, setCompanyId] = useState("");
     const [percentage, setPercentage] = useState("");
     const [isEditing, setIsEditing] = useState(false);
@@ -85,6 +85,7 @@ function ParticipationForm({ onCreatedLine, participationToEdit }) {
                 <div className="form-group">
                     <select value={partnerId} onChange={(e) => setPartnerId(e.target.value)}>
                         <option value="">Select a partner</option>
+                        {/* mapeia os partners pelo id e mostra o nome */}
                         {partners.map((partner) => (
                             <option key={partner.id} value={partner.id}>
                                 {partner.name}
