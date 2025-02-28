@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './navbar.css';
-const logo = require('../assets/oncase-logo.png');
 
 export default function Sidebar() {
     const [showMenu, setShowMenu] = useState(false);

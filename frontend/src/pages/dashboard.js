@@ -10,16 +10,12 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("https://dashboard-backend-ngl8.onrender.com/dashboard-general-stats/", {
-                    headers: {
-                        "Accept": "application/json"
-                    }
-                });
-
+                const response = await fetch("https://dashboard-backend-ngl8.onrender.com/dashboard-general-stats/");
+                
                 if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                    throw new Error("Network response was not ok");
                 }
-
+                
                 const data = await response.json();
                 setStats(data);
             } catch (error) {
